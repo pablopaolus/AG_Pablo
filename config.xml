@@ -2,7 +2,7 @@
 <!DOCTYPE config PUBLIC "" "config.dtd">
 
 <config>
-	<nPob>8</nPob>
-	<nGenes>5</nGenes>
-	<nGeneraciones>3</nGeneraciones>
+	<nPob>128</nPob>
+	<nGenes>256</nGenes>
+	<nGeneraciones>10</nGeneraciones>
 </config>
