@@ -94,7 +94,7 @@ El fichero donde se almacenan estos datos se guarda automátiamente en la carpet
 
 donde `prefijo` es siempre la cadena `agPablo`. Por ejemplo:
 
-`agPablo-128-256-3-18:31:51`
+[`agPablo-128-256-10-17:29:58`](https://github.com/pablopaolus/AG_Pablo/blob/master/results/agPablo-128-256-10-17:29:58).
 
 #####6. Compilación, enlazado y ejecución
 
