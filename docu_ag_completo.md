@@ -133,7 +133,7 @@ En primer lugar, veamos qué ocurre al variar el número de genes por cromosoma,
 En la siguiente gráfica se representa la tabla anterior, con el número de genes en el eje de abscisas y el tiempo de ejecución en el eje de ordenadas. Se puede observar una tendencia completamente lineal.
 
 ![Grafica Variacion nGenes]
-(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nGenes.png)
+(https://github.com/pablopaolus/AG_Pablo/raw/master/graphics/Variacion_nGenes.png)
 
 En la siguiente tabla mantenemos fijo el número de genes a 256, el número de generaciones a 128 y variamos el tamaño de la población:
 
@@ -147,7 +147,7 @@ En la siguiente tabla mantenemos fijo el número de genes a 256, el número de g
 Si graficamos los resultados, observamos un incremento lineal del tiempo de ejecución con el tamaño de la población:
 
 ![Grafica Variacion nPob]
-(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nPob.png)
+(https://github.com/pablopaolus/AG_Pablo/raw/master/graphics/Variacion_nPob.png)
 
 Por último, vamos a mantener fijo el tamaño de la población y el número de genes a 128 (ambos), y variaremos el número de generaciones:
 
@@ -161,12 +161,12 @@ Por último, vamos a mantener fijo el tamaño de la población y el número de g
 En este caso, la variación del tiempo con el número de generaciones también es lineal, al igual que en los casos anteriores.
 
 ![Grafica Variacion nGeneraciones]
-(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nGeneraciones.png)
+(https://github.com/pablopaolus/AG_Pablo/raw/master/graphics/Variacion_nGeneraciones.png)
 
 Aunque hemos observado que todos los incrementos son lineales, las pendientes de las rectas en cada caso no son iguales, lo que significa que no todos los parámetros afectan por igual al tiempo de ejecución, como es lógico. Para sacar alguna conclusión más, en la siguiente figura se representan las tres anteriores rectas en una sola gráfica.
 
 ![Grafica Comparacion]
-(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Comparacion.png)
+(https://github.com/pablopaolus/AG_Pablo/raw/master/graphics/Comparacion.png)
 
 Mediante esta comparación podemos apreciar que el parámetro que más afecta al tiempo de ejecución es el tamaño de la población, mientras que el parámetro que hace que se incremente menos el tiempo de ejecución es el número de genes por individuo. El número de generaciones se sitúa en un nivel intermedio entre ambos.
 
