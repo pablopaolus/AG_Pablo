@@ -168,6 +168,35 @@ Aunque hemos observado que todos los incrementos son lineales, las pendientes de
 ![Grafica Comparacion]
 (https://github.com/pablopaolus/AG_Pablo/raw/master/graphics/Comparacion.png)
 
-Mediante esta comparación podemos apreciar que el parámetro que más afecta al tiempo de ejecución es el tamaño de la población, mientras que el parámetro que hace que se incremente menos el tiempo de ejecución es el número de genes por individuo. El número de generaciones se sitúa en un nivel intermedio entre ambos.
+Mediante esta comparación podemos apreciar que el parámetro que más afecta al tiempo de ejecución es el tamaño de la población, mientras que el parámetro que hace que se incremente menos el tiempo de ejecución es el número de genes por individuo. El número de generaciones se sitúa en un nivel intermedio entre ambos. En cuanto al fitness (aunque no se recoge en las tablas), su valor aumenta con el número de generaciones, como cabía esperar.
 
-*ToDo gprof
+#####Profiling con GProf
+
+Para finalizar, vamos a haer uso del profiler de GNU, con lo que podremos conocer cuáles son las funciones que consumen mayor tiempo de ejecución, así como el número de llamadas qeu se realizan a cada una de ellas, entre otras coasas. Para ello, debemos compilar con la opción `-pg` como explica perfectamente rotty11 en [su documentación](https://github.com/rotty11/Genetico2014/blob/master/Documentacion.md). Para poder medio leer el fichero de salida `gmon.out`, vamos a convertirlo en un fichero de texto mediante la orden:
+
+```bash
+gprof gmon.out > timeReport.txt
+```
+
+Obteniendo el fichero [timeReport.txt](https://github.com/pablopaolus/AG_Pablo/blob/master/timeReport.txt) con los resultados del profiling. Este fichero puede convertirse a una gráfica utilizando un programa llamado [gprof2dot](http://code.google.com/p/jrfonseca/wiki/Gprof2Dot), para lo cual es necesario instalar [Python](https://www.python.org/download/) y [Graphviz](http://www.graphviz.org/Download.php):
+
+```bash
+apt-get install python graphviz
+```
+
+Para obtener el diagrama hay que ejecutar:
+
+```bash
+gprof path/to/your/executable | gprof2dot.py | dot -Tpng -o output.png
+```
+
+En nuestro caso concreto:
+
+```bash
+gprof bin/ag_completo | gprof2dot.py | dot -Tpng -o output_gprof.png
+```
+
+Con lo que obtenemos:
+
+![Grafica gprof]
+(https://github.com/pablopaolus/AG_Pablo/raw/master/output_gprof.png)
