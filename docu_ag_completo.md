@@ -157,7 +157,7 @@ Por último, vamos a mantener fijo el tamaño de la población y el número de g
        128      |           128          |       128       |      0.136780 s
        128      |           128          |       512       |      0.523546 s
        128      |           128          |      1024       |      1.054551 s
-       128      |           128          |      1024       |      2.117347 s
+       128      |           128          |      2048       |      2.117347 s
 
 En este caso, la variación del tiempo con el número de generaciones también es lineal, al igual que en los casos anteriores.
 
