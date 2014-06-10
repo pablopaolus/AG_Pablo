@@ -196,7 +196,9 @@ En nuestro caso concreto:
 gprof bin/ag_completo | gprof2dot.py | dot -Tpng -o output_gprof.png
 ```
 
-Con lo que obtenemos:
+Con lo que obtenemos el siguiente diagrama (hacer clic sobre la imagen para agrandar):
 
 ![Grafica gprof]
 (https://github.com/pablopaolus/AG_Pablo/raw/master/output_gprof.png)
+
+Como se puede observar, la mayor parte del tiempo la consumen las funciones de mutación, cálculo del fitness y crossover.
