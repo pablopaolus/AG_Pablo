@@ -2,9 +2,10 @@ Documentación del trabajo final: Algoritmo Genético completo
 ============================================================
 
 He creado un nuevo repositorio [AG_Pablo] (https://github.com/pablopaolus/AG_Pablo.git) para albergar el trabajo final de la asignatura. 
-El código del algoritmo genético completo en sí se encuentra en la carpeta `src` y se denomina [ag_completo.cpp] (https://github.com/pablopaolus/AG_Pablo/blob/master/src/ag_completo.cpp). 
+El código del algoritmo genético completo en sí se encuentra en la carpeta `src` del repositorio y se denomina [ag_completo.cpp] (https://github.com/pablopaolus/AG_Pablo/blob/master/src/ag_completo.cpp).
+El proyecto se distribuye bajo [licencia GPLv2](https://github.com/pablopaolus/AG_Pablo/blob/master/LICENSE). 
 
-Recordemos que a lo largo de las anteriores sesiones de trabajo decidí seguir adelante utilizando la clase `<vector>`, debido a la disponibilidad de funciones en esta clase que, además de facilitarnos la vida, ahorrarán mucho tiempo de ejecución. Los cambios "grosso modo" del nuevo código en [ag_completo.cpp] (https://github.com/pablopaolus/AG_Pablo/blob/master/src/ag_completo.cpp) con respecto al último ejercicio de la sesión anterior ([seleccion.cpp] (https://github.com/pablopaolus/repositorio_pablopaolus/blob/master/seleccion.cpp)) son los siguientes:
+Recordemos que, a lo largo de las anteriores sesiones de trabajo, decidí seguir adelante utilizando la clase `<vector>`, debido a la disponibilidad de funciones en esta clase que, además de facilitarnos la vida, ahorrarán mucho tiempo de ejecución. Los cambios "grosso modo" del nuevo código en [ag_completo.cpp] (https://github.com/pablopaolus/AG_Pablo/blob/master/src/ag_completo.cpp) con respecto al último ejercicio de la sesión anterior ([seleccion.cpp] (https://github.com/pablopaolus/repositorio_pablopaolus/blob/master/seleccion.cpp)) son los siguientes:
 
 #####1. Modularización del código 
 
@@ -42,17 +43,17 @@ vector< vector<char> > crossover(vector< vector<char> > &padres, vector<int> &ru
 
 #####2. Implementación del algoritmo genético completo 
 
-Se ha implementado ya un algoritmo genético completo (anteriormente solo se hacía una vez, como si solamente hubiera une generación). Para ello, tras inicializar la población de forma aleatoria, se ha implementado un bucle `for` en el que se realiza la evaluación, selección para reproducción y generación de una nueva población. La condición de terminación del bucle es la ejecución de un determinado número de generaciones. 
+Se ha implementado ya un algoritmo genético completo (anteriormente solo se hacía el proceso una vez, como si solamente hubiera una generación). Para ello, tras inicializar la población de forma aleatoria, se ha implementado un bucle `for` en el que se realiza la evaluación, selección para reproducción y generación de una nueva población. La condición de terminación del bucle es la ejecución de un determinado número de generaciones. 
 
 #####3. Parámetros de entrada
 
 Ahora, los parámetros de entrada son tres en lugar de dos: 
 
-I. `nPob`: Tamaño de la población, es decir, número de individuos o cromosomas.
-II. `nGenes`: Número de genes que contiene cada cromosoma.
-III. `nGeneraciones`: número de generaciones (determina la condición de terminación del bucle).
+ - `nPob`: Tamaño de la población, es decir, número de individuos o cromosomas.
+ - `nGenes`: Número de genes que contiene cada cromosoma.
+ - `nGeneraciones`: número de generaciones (determina la condición de terminación del bucle).
 
-La población está representada por un vector de `nPob` vectores, donde cada uno de ellos es un cromosoma que contiene `nGenes` valores aleatorios 0 o 1.
+La población está representada por un vector de `nPob` vectores, donde cada uno de ellos es un cromosoma que contiene `nGenes` valores binarios aleatorios (0 o 1).
 
 ```cpp
 vector< vector<char> > poblacion(nPob, vector<char>(nGenes)); 
@@ -104,13 +105,13 @@ En todos los ejercicios de las sesiones de trabajo anteriores, para realizar la 
 g++ file.cpp -o file
 ```
 
-Ahora se ha creado un [Makefile](https://github.com/pablopaolus/AG_Pablo/blob/master/Makefile) que simplifica y facilita el proceso. Para construir el proyecto tan solo hay que ejecutar la orden `make` en el intérprete de órdenes, situándonos en la raíz del proyecto. Con ello se construye directamente el ejecutable `ag_completo` en la carpeta `bin`, a partir del código fuente de la carpeta `src`. Cabe mencionar que, para ejecutar el algoritmo, hay que situarse en la raíz del proyecto y escribir:
+Ahora se ha creado un [Makefile](https://github.com/pablopaolus/AG_Pablo/blob/master/Makefile) que simplifica y facilita el proceso (teniendo en cuenta además que es necesario indicar opciones extra para la compilación con el fin de poder utilizar el fichero de configuración). Para construir el proyecto, tan solo hay que ejecutar la orden `make` en el intérprete de órdenes, situándonos en la raíz del proyecto. Con ello se construye directamente el ejecutable `ag_completo` en la carpeta `bin`, a partir del código fuente de la carpeta `src`. Cabe mencionar que, para ejecutar el algoritmo, hay que situarse en la raíz del proyecto y escribir:
 
 ```bash
 ./bin/ag_completo
 ```
 
-Es necesario hacerlo desde la raíz porque es aquí donde se encuentra el fichero de configuración ([config.xml](https://github.com/pablopaolus/AG_Pablo/blob/master/config.xml)). Si intentamos ejectuarlo desde la carpeta `bin` dará error (se puede solucionar fácilmente copiando el fichero de configuración a esta carpeta).
+Es necesario hacerlo desde la raíz del proyecto porque es aquí donde se encuentra el fichero de configuración ([config.xml](https://github.com/pablopaolus/AG_Pablo/blob/master/config.xml)). Si intentamos ejectuarlo desde la carpeta `bin` dará error (se puede solucionar fácilmente copiando el fichero de configuración a esta carpeta).
 
 También se pueden ejecutar las órdenes `make clean` para borrar ficheros con código objeto y de edición, así como `make mrproper` para borrar todo lo construído con el `make`, y además los ficheros con los resultados. 
 
@@ -118,6 +119,55 @@ También se pueden ejecutar las órdenes `make clean` para borrar ficheros con c
 Resultados experimentales
 --------------------------
 
-ToDo
+En este apartado llevaremos a cabo la evaluación del algoritmo genético programado, en términos del tiempo de ejecución para diversos valores de los tres parámetros de entrada. Construiremos así tres tablas, en cada una de las cuales variaremos uno de los parámetros y mantendremos fijos los otros dos. Todos los ficheros de salida con los resultados (donde también aparecen los datos de fitness de cada generación) se encuentran en la carpeta [resultados](https://github.com/pablopaolus/AG_Pablo/tree/master/results). 
 
+En primer lugar, veamos qué ocurre al variar el número de genes por cromosoma, manteniendo fijo el tamaño de la población a 128 individuos y ejecutando el algoritmo para 64 generaciones:
 
+ Tam. población | Nº genes por cromosoma | Nº generaciones | Tiempo de ejecución
+----------------|------------------------|-----------------|--------------------
+       128      |           128          |        64       |      0.066901 s
+       128      |           512          |        64       |      0.238151 s
+       128      |           1024         |        64       |      0.468785 s
+       128      |           2048         |        64       |      0.946773 s
+
+En la siguiente gráfica se representa la tabla anterior, con el número de genes en el eje de abscisas y el tiempo de ejecución en el eje de ordenadas. Se puede observar una tendencia completamente lineal.
+
+![Grafica Variacion nGenes]
+(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nGenes.png)
+
+En la siguiente tabla mantenemos fijo el número de genes a 256, el número de generaciones a 128 y variamos el tamaño de la población:
+
+ Tam. población | Nº genes por cromosoma | Nº generaciones | Tiempo de ejecución
+----------------|------------------------|-----------------|--------------------
+       128      |           256          |       128       |      0.249689 s
+       512      |           256          |       128       |      0.971499 s
+      1024      |           256          |       128       |      1.964379 s
+      2048      |           256          |       128       |      3.963195 s
+
+Si graficamos los resultados, observamos un incremento lineal del tiempo de ejecución con el tamaño de la población:
+
+![Grafica Variacion nPob]
+(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nPob.png)
+
+Por último, vamos a mantener fijo el tamaño de la población y el número de genes a 128 (ambos), y variaremos el número de generaciones:
+
+ Tam. población | Nº genes por cromosoma | Nº generaciones | Tiempo de ejecución
+----------------|------------------------|-----------------|--------------------
+       128      |           128          |        32       |      0.035760 s
+       128      |           128          |       128       |      0.136780 s
+       128      |           128          |       512       |      0.523546 s
+       128      |           128          |      1024       |      1.054551 s
+
+En este caso, la variación del tiempo con el número de generaciones también es lineal, al igual que en los casos anteriores.
+
+![Grafica Variacion nGeneraciones]
+(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Variacion_nGeneraciones.png)
+
+Aunque hemos observado que todos los incrementos son lineales, las pendientes de las rectas en cada caso no son iguales, lo que significa que no todos los parámetros afectan por igual al tiempo de ejecución, como es lógico. Para sacar alguna conclusión más, en la siguiente figura se representan las tres anteriores rectas en una sola gráfica.
+
+![Grafica Comparacion]
+(https://github.com/pablopaolus/AG_Pablo/blob/master/graphics/Comparacion.png)
+
+Mediante esta comparación podemos apreciar que el parámetro que más afecta al tiempo de ejecución es el tamaño de la población, mientras que el parámetro que hace que se incremente menos el tiempo de ejecución es el número de genes por individuo. El número de generaciones se sitúa en un nivel intermedio entre ambos.
+
+*ToDo gprof
